@@ -2,11 +2,24 @@ $(function(){
 
     var model = {
         init: function() {
+            /*The property localStorage has access to a Storage local
+             *object. localStorage data don't expire. The Web Storage API
+             *gives access to storage session or local storage to an
+             *specific domain, allowing the author, for example, to add,
+             *modify or exclude items stored.
+             */
             if (!localStorage.notes) {
+                /*Return a JSON string corresponding to the specified
+                 *value, optionally including only certain properties
+                 *or replacing property values in a user-defined manner.
+                 */
                 localStorage.notes = JSON.stringify([]);
             }
         },
         add: function(obj) {
+            /*Parse a string as JSON, optionally transform the
+             *produced value and its properties, and return the value.
+             */
             var data = JSON.parse(localStorage.notes);
             data.push(obj);
             localStorage.notes = JSON.stringify(data);
@@ -38,6 +51,7 @@ $(function(){
 
     var view = {
         init: function() {
+            console.log(this);
             this.noteList = $('#notes');
             var newNoteForm = $('#new-note-form');
             var newNoteContent = $('#new-note-content');
