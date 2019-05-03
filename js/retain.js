@@ -39,7 +39,7 @@ $(function(){
         },
 
         getNotes: function() {
-            return model.getAllNotes();
+            return model.getAllNotes().reverse();
         },
 
         init: function() {
@@ -51,13 +51,18 @@ $(function(){
 
     var view = {
         init: function() {
-            console.log(this);
+            console.dir(this);
             this.noteList = $('#notes');
             var newNoteForm = $('#new-note-form');
             var newNoteContent = $('#new-note-content');
+            /*The submit event fires when a <form> is submitted.*/
             newNoteForm.submit(function(e){
                 octopus.addNewNote(newNoteContent.val());
                 newNoteContent.val('');
+                /*The handler can check the data, and if there are errors,
+                 *show them and call event.preventDefault(), then the form
+                 *won’t be sent to the server.
+                 */
                 e.preventDefault();
             });
             view.render();
